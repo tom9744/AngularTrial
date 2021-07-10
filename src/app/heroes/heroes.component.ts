@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Hero } from '../hero';  // TS 사용자정의 타입 
+
+import { Hero } from '../hero';  // 사용자 지정 타입 
+import { HEROES } from '../mock-heroes'; // 임시 영웅 데이터
 
 @Component({
   selector: 'app-heroes',
@@ -7,14 +9,18 @@ import { Hero } from '../hero';  // TS 사용자정의 타입
   styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent implements OnInit {
-  hero: Hero = {
-    id: 1,
-    name: 'Windstorm'
-  };
+
+  heroes: Hero[] = HEROES;
+  selectedHero?: Hero;
 
   constructor() { }
 
   // 컴포넌트를 초기화하는 로직은 이 메소드에 작성한다.
   ngOnInit(): void {
+  }
+
+  // <li> 요소에 바인딩 된 이벤트 핸들러 
+  onSelect(hero: Hero): void {
+    this.selectedHero = hero;
   }
 }

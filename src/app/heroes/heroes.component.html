@@ -1,0 +1,12 @@
+<!-- 파이프(Pipe)를 이용해, 데이터를 원하는 형태로 출력할 수 있다. -->
+<h2>{{ hero.name | uppercase }} Details</h2>
+
+<div>
+    <span>Hero ID: </span>{{ hero.id }}
+</div>
+
+<div>
+    <label for="name">Hero Name: </label>
+
+    <input id="name" [(ngModel)]="hero.name" placeholder="Name">
+</div>

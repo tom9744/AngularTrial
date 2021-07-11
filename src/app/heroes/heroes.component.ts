@@ -27,4 +27,22 @@ export class HeroesComponent implements OnInit {
     this.heroService.getHeroes()
         .subscribe(heroes => this.heroes = heroes);
   }
+
+  add(name: string): void {
+    name = name.trim();
+
+    if (!name) { return; }
+
+    this.heroService.addHero({ name } as Hero)
+      .subscribe(hero => {
+        this.heroes.push(hero);
+      });
+  }
+
+  delete(hero: Hero): void {
+    // 1. 변경된 내용으로 화면을 갱신하는 것은 컴포넌트가 처리
+    this.heroes = this.heroes.filter(h => h !== hero);
+    // 2. 히어로를 제거하는 기능은 HeroService가 담당
+    this.heroService.deleteHero(hero.id).subscribe();
+  }
 }
